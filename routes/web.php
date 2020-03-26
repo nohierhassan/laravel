@@ -17,5 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// the url of all courses
 Route::get('/courses', 'CourseController@index')->name('courses.index');
 
+// the  url of only one course
+Route::get('/courses/{course}', 'CourseController@show')->name('courses.show');

@@ -18,4 +18,14 @@ class CourseController extends Controller
     	]);
     }
 
+    public function show()
+    {
+    	$request  = request();
+    	$courseId = $request->course;     // course is the name of the passed parameter in the url
+    	$course   = Course::find($courseId);
+    	return view('courses.show',[
+    		'course' => $course,
+    	]);
+    }
+
 }
