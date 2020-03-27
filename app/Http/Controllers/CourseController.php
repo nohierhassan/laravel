@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Validation\Rule;
 // we have to use the model which located in App namespace
 use App\Course;
 use App\User;
@@ -41,8 +41,11 @@ class CourseController extends Controller
     public function store()
     {
     	// take the request to be able to extract all the data passed by the form
-    	$request = request();
-
+			$request = request();
+			$validatedData = $request->validate([
+        'title' => 'required|min:3|unique:courses',
+        'description' => 'required|min:10',
+    ]);
     	// fill the DB, Don't forget to set the fillable options in the course Model
     	Course::create([
     		// those on the LHS are the names in the html forms to be able to get them from here
@@ -61,6 +64,7 @@ class CourseController extends Controller
 
 		public function edit(Request $request)
 		{
+			
 			$courseId = $request->course;
 			$course = Course::find($courseId);
 			$users = User::all();
@@ -76,6 +80,15 @@ class CourseController extends Controller
 		}
 		public function update(Request $request)
 		{
+			$validatedData = $request->validate([
+				// 'title' => 'required|min:3|unique:courses',
+				'title'=> [
+					'required',
+					// this to force the unique contraint to stop if the same object is being updated
+					Rule::unique('courses')->ignore($request->course),
+			],
+        'description' => 'required|min:10',
+    ]);
 			$courseId = $request->course;
 			$course = Course::find($courseId);
 			$course->title = $request->title;

@@ -4,6 +4,15 @@
 <form method="POST" action="{{route('courses.update',['course' => $course->id])}}">
     @csrf
     @method('PUT')
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="form-group">
       <label >Title</label>
       <input name="title" type="text" class="form-control" aria-describedby="emailHelp" value = "{{$course->title}}">

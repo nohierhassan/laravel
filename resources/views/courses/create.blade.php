@@ -3,6 +3,15 @@
 @section('content')
 <form method="POST" action="{{route('courses.store')}}">
     @csrf
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="form-group">
       <label >Title</label>
       <input name="title" type="text" class="form-control" aria-describedby="emailHelp">
