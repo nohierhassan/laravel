@@ -17,7 +17,7 @@
       <th scope="row">{{$course -> id}}</th>
       <td>{{$course -> title}}</td>
       <td>{{$course -> user->name}}</td>
-      <td>{{$course -> created_at}}</td>
+      <td>{{$course -> created_at->format('Y-m-d')}}</td>
       <td><a href="{{route('courses.show',['course' => $course->id])}}" class="btn btn-success btn-sm">View</a></td>
       <td><a href="{{route('courses.edit',['course' => $course->id])}}" class="btn btn-primary btn-sm">Edit</a></td>
       <td><form method="POST"action="{{route('courses.destroy',['course' => $course->id])}}">

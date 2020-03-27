@@ -13,7 +13,7 @@
         <h5 class="card-title">Instructor Info</h5>
           <p class="card-text">Name: {{$user->name}}</p>
            <p class="card-text">Email: {{$user->email}}</p>
-            <p class="card-text">Created At: {{$user->created_at}}</p>
+            <p class="card-text">Created At: {{$user->created_at->format('l jS \of F Y h:i:s A')}}</p>
         </div>
       </div>
 @endsection

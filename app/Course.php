@@ -12,10 +12,15 @@ class Course extends Model
         'description',
         'user_id',
     ];
+    protected $dates = [
+        'created_at', 'updated_at',
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User');
     }
+   
 
 
 }
