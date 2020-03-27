@@ -5,7 +5,7 @@
         <div class="card-body">
         <h5 class="card-title">Post Info</h5>
           <p class="card-text">{{$course->title}}</p>
-           <p class="card-text">{{$course->description}}</p>
+          <p class="card-text">{{$course->description}}</p>
         </div>
       </div>
        <div class="card" style="width: 18rem;">

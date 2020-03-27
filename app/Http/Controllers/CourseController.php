@@ -51,6 +51,38 @@ class CourseController extends Controller
     		'user_id'=> $request->user_id,
     	]);
     	return redirect()->route('courses.index');
-    }
+		}
+		public function destroy(Request $request)
+		{
+			$course = Course::find($request->course);
+			$course->delete();
+			return redirect()->route('courses.index');
+		}
+
+		public function edit(Request $request)
+		{
+			$courseId = $request->course;
+			$course = Course::find($courseId);
+			$users = User::all();
+			// dd($course->user->name);
+			return view('courses.edit',[
+				'course'=>$course,
+				'users'=>$users
+				
+    	]);
+			
+
+
+		}
+		public function update(Request $request)
+		{
+			$courseId = $request->course;
+			$course = Course::find($courseId);
+			$course->title = $request->title;
+			$course->description = $request->description;
+			$course->user_id = $request->user_id;
+			$course->save();
+			return redirect()->route('courses.index');
+		}
 
 }

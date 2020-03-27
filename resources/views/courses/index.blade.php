@@ -16,11 +16,18 @@
     <tr>
       <th scope="row">{{$course -> id}}</th>
       <td>{{$course -> title}}</td>
-      <td>{{$course -> instructor}}</td>
+      <td>{{$course -> user->name}}</td>
       <td>{{$course -> created_at}}</td>
       <td><a href="{{route('courses.show',['course' => $course->id])}}" class="btn btn-success btn-sm">View</a></td>
-      <td><a href="" class="btn btn-primary btn-sm">Edit</a></td>
-      <td><a href="" class="btn btn-danger btn-sm">Delete</a></td>
+      <td><a href="{{route('courses.edit',['course' => $course->id])}}" class="btn btn-primary btn-sm">Edit</a></td>
+      <td><form method="POST"action="{{route('courses.destroy',['course' => $course->id])}}">
+             @csrf @method('delete')
+             <button type="submit"
+              class="btn btn-danger"
+               onclick="return confirm('Are you sure that you want to delete this post ?')">
+               Delete </button>
+            </form>
+        </td>
     
 
     </tr>
