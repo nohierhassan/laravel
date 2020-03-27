@@ -12,7 +12,7 @@ class Course extends Model
         'description',
         'user_id',
     ];
-     public function user()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
