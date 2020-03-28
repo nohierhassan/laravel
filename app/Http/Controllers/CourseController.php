@@ -7,6 +7,7 @@ use Illuminate\Validation\Rule;
 // we have to use the model which located in App namespace
 use App\Course;
 use App\User;
+use App\Http\Requests\StoreCourseRequest;
 class CourseController extends Controller
 {
     // we make the logic here
@@ -38,15 +39,13 @@ class CourseController extends Controller
     	]);
 
     }
-    public function store()
+    public function store(StoreCourseRequest $request)
     {
     	// take the request to be able to extract all the data passed by the form
-			$request = request();
-			$validatedData = $request->validate([
-        'title' => 'required|min:3|unique:courses',
-        'description' => 'required|min:10',
-    ]);
-    	// fill the DB, Don't forget to set the fillable options in the course Model
+			
+	
+			// fill the DB, Don't forget to set the fillable options in the course Model
+
     	Course::create([
     		// those on the LHS are the names in the html forms to be able to get them from here
     		'title'=>$request->title,
